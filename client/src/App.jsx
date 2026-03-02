@@ -2,6 +2,7 @@ import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./Layout";
 import Home from "./Home";
+import CreatePost from "./CreatePost";
 import PageNotFound from "./PageNotFound";
 import Projects from "./Projects";
 import ProjectDetails from "./ProjectDetails";
@@ -14,6 +15,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="projects" element={<Projects />} />
           <Route path="projects/:id" element={<ProjectDetails />} />
+          <Route path="admin" element={<CreatePost />} />
           <Route path="*" element={<PageNotFound />} />
         </Route>
       </Routes>

@@ -17,15 +17,15 @@ const getAllProjects = asyncHandler(async (req, res) => {
 // @route POST /projects
 // @access Private
 const createNewProject = asyncHandler(async (req, res) => {
-  const { title, description, technologies, year } = req.body;
+  const { title, description, tags, startDate, endDate } = req.body;
 
-  if (!title || !description || !technologies || !year) {
+  if (!title || !description || !tags || !startDate || !endDate) {
     return res
       .status(400)
       .json({ message: "Malformed request, required fields are missing!" });
   }
 
-  const projectObject = { title, description, technologies, year };
+  const projectObject = { title, description, tags, startDate, endDate };
   const project = await Project.create(projectObject);
 
   if (project) {
@@ -39,8 +39,8 @@ const createNewProject = asyncHandler(async (req, res) => {
 // @route PATCH /projects
 // @access Private
 const updateProject = asyncHandler(async (req, res) => {
-  const { id, title, description, technologies, year } = req.body;
-  if (!id || !title || !description || !technologies || !year) {
+  const { id, title, description, tags, startDate, endDate } = req.body;
+  if (!id || !title || !description || !tags || !startDate || !endDate) {
     return res
       .status(400)
       .json({ message: "Malformed request, required fields are missing!" });
@@ -54,8 +54,9 @@ const updateProject = asyncHandler(async (req, res) => {
 
   project.title = title;
   project.description = description;
-  project.technologies = technologies;
-  project.year = year;
+  project.tags = tags;
+  project.startDate = startDate;
+  project.endDate = endDate;
 
   await project.save();
   res.json({ message: `Project ${title} updated` });

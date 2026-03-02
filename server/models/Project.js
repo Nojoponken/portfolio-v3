@@ -9,13 +9,17 @@ const projectSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  technologies: [
+  tags: [
     {
       type: String,
     },
   ],
-  year: {
-    type: Number,
+  startDate: {
+    type: Date,
+    required: true,
+  },
+  endDate: {
+    type: Date,
     required: true,
   },
 });
