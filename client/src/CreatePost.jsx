@@ -30,6 +30,35 @@ function CreatePost() {
   const createNewPost = (event) => {
     event.preventDefault();
     console.log("Submitting");
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        title: title,
+        description: text,
+        tags: tags,
+        startDate: startDate,
+        endDate: endDate,
+      }),
+    };
+    fetch("https://localhost:3500/projects", requestOptions)
+      .then(async (response) => {
+        const isJson = response.headers
+          .get("content-type")
+          ?.includes("application/json");
+        const data = isJson && (await response.json());
+
+        if (!response.ok) {
+          const error = (data && data.message) || response.status;
+          return Promis.reject(error);
+        } else {
+          const msg = (data && data.message) || response.status;
+          console.log("Post created! ", msg);
+        }
+      })
+      .catch((error) => {
+        console.error("Error when fetching: ", error);
+      });
   };
 
   return (
