@@ -41,7 +41,7 @@ function CreatePost() {
         endDate: endDate,
       }),
     };
-    fetch("https://localhost:3500/projects", requestOptions)
+    fetch("http://localhost:3500/projects", requestOptions)
       .then(async (response) => {
         const isJson = response.headers
           .get("content-type")
