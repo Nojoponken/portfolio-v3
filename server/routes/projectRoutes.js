@@ -1,6 +1,6 @@
-const express = require("express");
+import express from "express";
 const router = express.Router();
-const projectsController = require("../controllers/projectsController");
+import projectsController from "../controllers/projectsController.js";
 
 router
   .route("/")
@@ -9,4 +9,4 @@ router
   .patch(projectsController.updateProject)
   .delete(projectsController.deleteProject);
 
-module.exports = router;
+export default router;

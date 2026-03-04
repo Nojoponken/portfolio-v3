@@ -6,4 +6,4 @@ const allowedOrigins = [
   "https://noahryden.se",
 ];
 
-module.exports = allowedOrigins;
+export default allowedOrigins;

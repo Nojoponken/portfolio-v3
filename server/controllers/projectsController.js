@@ -1,5 +1,5 @@
-const Project = require("../models/Project");
-const asyncHandler = require("express-async-handler");
+import Project from "../models/Project.js";
+import asyncHandler from "express-async-handler";
 
 // @desc Get all projects
 // @route GET /projects
@@ -83,7 +83,7 @@ const deleteProject = asyncHandler(async (req, res) => {
   res.json({ message: `Project ${result.title} with id ${result.id} deleted` });
 });
 
-module.exports = {
+export default {
   getAllProjects,
   createNewProject,
   updateProject,

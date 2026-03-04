@@ -1,15 +1,19 @@
-require("dotenv").config();
-const express = require("express");
+import "dotenv/config.js";
+import express from "express";
 const app = express();
-const path = require("path");
-const { logger, logEvents } = require("./middleware/logger");
-const errorHandler = require("./middleware/errorHandler");
-const cookieParser = require("cookie-parser");
-const cors = require("cors");
-const corsOptions = require("./config/corsOptions");
-const connectDB = require("./config/dbConn");
-const mongoose = require("mongoose");
+import path from "path";
+import { logger, logEvents } from "./middleware/logger.js";
+import errorHandler from "./middleware/errorHandler.js";
+import cookieParser from "cookie-parser";
+import cors from "cors";
+import corsOptions from "./config/corsOptions.js";
+import connectDB from "./config/dbConn.js";
+import mongoose from "mongoose";
 const PORT = process.env.PORT || 3500;
+const __dirname = import.meta.dirname;
+
+import rootRoutes from "./routes/root.js";
+import projectRoutes from "./routes/projectRoutes.js";
 
 console.log(process.env.NODE_ENV);
 
@@ -25,8 +29,8 @@ app.use(cookieParser());
 
 app.use("/", express.static(path.join(__dirname, "public")));
 
-app.use("/", require("./routes/root"));
-app.use("/projects", require("./routes/projectRoutes"));
+app.use("/", rootRoutes);
+app.use("/projects", projectRoutes);
 
 app.all("*splat", (req, res) => {
   res.status(404);
@@ -50,7 +54,7 @@ mongoose.connection.once("open", () => {
 mongoose.connection.on("error", (err) => {
   console.log(err);
   logEvents(
-    `${err.no}: ${err.code}\t${req.syscall}\t${err.hostname}`,
+    `${err.no}: ${err.code}\t${err.syscall}\t${err.hostname}`,
     "mongoErrlog.log",
   );
 });

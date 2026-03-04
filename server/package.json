@@ -4,7 +4,7 @@
   "description": "Portfolio website backend",
   "license": "ISC",
   "author": "Noah Rydén",
-  "type": "commonjs",
+  "type": "module",
   "main": "server.js",
   "scripts": {
     "start": "node server",
