@@ -50,7 +50,7 @@ function CreatePost() {
 
         if (!response.ok) {
           const error = (data && data.message) || response.status;
-          return Promis.reject(error);
+          return Promise.reject(error);
         } else {
           const msg = (data && data.message) || response.status;
           console.log("Post created! ", msg);

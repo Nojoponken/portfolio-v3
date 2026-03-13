@@ -14,6 +14,7 @@ const __dirname = import.meta.dirname;
 
 import rootRoutes from "./routes/root.js";
 import projectRoutes from "./routes/projectRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
 
 console.log(process.env.NODE_ENV);
 
@@ -30,6 +31,8 @@ app.use(cookieParser());
 app.use("/", express.static(path.join(__dirname, "public")));
 
 app.use("/", rootRoutes);
+app.use("/auth", authRoutes);
+app.use("/users", userRoutes);
 app.use("/projects", projectRoutes);
 
 app.all("*splat", (req, res) => {
