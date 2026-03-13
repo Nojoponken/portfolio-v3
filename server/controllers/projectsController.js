@@ -13,6 +13,19 @@ const getAllProjects = asyncHandler(async (req, res) => {
   res.json(projects);
 });
 
+// @desc Get a specific project
+// @route GET /projects/:projectId
+// @access Public
+const getSingleProject = asyncHandler(async (req, res) => {
+  const { projectId } = req.params;
+  const project = await Project.findOne().where({ _id: projectId }).lean();
+  if (!project) {
+    return res.status(404).json({ message: "No project found" });
+  }
+
+  res.json(project);
+});
+
 // @desc Create new project
 // @route POST /projects
 // @access Private
@@ -85,6 +98,7 @@ const deleteProject = asyncHandler(async (req, res) => {
 
 export default {
   getAllProjects,
+  getSingleProject,
   createNewProject,
   updateProject,
   deleteProject,

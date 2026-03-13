@@ -9,4 +9,6 @@ router
   .patch(projectsController.updateProject)
   .delete(projectsController.deleteProject);
 
+router.route("/:projectId").get(projectsController.getSingleProject);
+
 export default router;

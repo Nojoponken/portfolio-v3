@@ -3,6 +3,7 @@ import { v4 as uuid } from "uuid";
 import fs from "fs";
 const fsPromises = fs.promises;
 import path from "path";
+const __dirname = import.meta.dirname;
 
 const logEvents = async (message, logFileName) => {
   const dateTime = `${format(new Date(), "yyyy-MM-dd\tHH:mm:ss")}`;

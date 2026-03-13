@@ -62,51 +62,47 @@ function CreatePost() {
   };
 
   return (
-    <>
+    <main>
       <form onKeyDown={preventEnterSubmit} onSubmit={createNewPost}>
-        <label>
-          Title:{" "}
-          <input
-            value={title}
-            onChange={(event) => setTitle(event.target.value)}
-          />
-        </label>
+        <input
+          placeholder="Title..."
+          value={title}
+          onChange={(event) => setTitle(event.target.value)}
+        />
 
-        <label>
-          Text body:{" "}
-          <textarea
-            value={text}
-            onChange={(event) => setText(event.target.value)}
-          />
-        </label>
+        <textarea
+          placeholder="Project description..."
+          cols="80"
+          rows="8"
+          value={text}
+          onChange={(event) => setText(event.target.value)}
+        />
 
-        <label>
-          Add tags:{" "}
-          <input
-            value={tagInput}
-            onChange={(event) => setTagInput(event.target.value)}
-            onKeyDown={tryAddTag}
-          />
-        </label>
+        <input
+          placeholder="Enter the name of a tag then press the <Return> key"
+          value={tagInput}
+          onChange={(event) => setTagInput(event.target.value)}
+          onKeyDown={tryAddTag}
+        />
+        <span>
+          <label>
+            Start date:{" "}
+            <input
+              type="date"
+              value={startDate}
+              onChange={(event) => setStartDate(event.target.value)}
+            />
+          </label>
 
-        <label>
-          Start date:{" "}
-          <input
-            type="date"
-            value={startDate}
-            onChange={(event) => setStartDate(event.target.value)}
-          />
-        </label>
-
-        <label>
-          End date:{" "}
-          <input
-            type="date"
-            value={endDate}
-            onChange={(event) => setEndDate(event.target.value)}
-          />
-        </label>
-
+          <label>
+            End date:{" "}
+            <input
+              type="date"
+              value={endDate}
+              onChange={(event) => setEndDate(event.target.value)}
+            />
+          </label>
+        </span>
         <input type="submit" value="Create Post" />
       </form>
       <h3>{title}</h3>
@@ -124,7 +120,7 @@ function CreatePost() {
       <p>
         {startDate} to {endDate}
       </p>
-    </>
+    </main>
   );
 }
 

@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./Layout";
 import Home from "./Home";
 import CreatePost from "./CreatePost";
+import Login from "./Login";
 import PageNotFound from "./PageNotFound";
 import Projects from "./Projects";
 import ProjectDetails from "./ProjectDetails";
@@ -14,8 +15,10 @@ function App() {
         <Route exact path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="projects" element={<Projects />} />
-          <Route path="projects/:id" element={<ProjectDetails />} />
+          <Route path="projects/:projectId" element={<ProjectDetails />} />
           <Route path="admin" element={<CreatePost />} />
+          <Route path="admin/login" element={<Login />} />
+          <Route path="admin/register" element={<CreatePost />} />
           <Route path="*" element={<PageNotFound />} />
         </Route>
       </Routes>

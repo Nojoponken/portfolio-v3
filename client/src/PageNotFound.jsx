@@ -1,5 +1,10 @@
 function PageNotFound() {
-  return <h1>404</h1>;
+  return (
+    <main>
+      <h2>404 Not Found</h2>
+      <p>Page does not exist.</p>
+    </main>
+  );
 }
 
 export default PageNotFound;
