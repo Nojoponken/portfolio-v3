@@ -1,25 +1,17 @@
 import { useState } from "react";
+import { preventEnterSubmit } from "../utils/formUtils.js";
+import apiService from "../services/apiService.js";
 
 function CreatePost() {
   const [title, setTitle] = useState("");
-  const [text, setText] = useState("");
+  const [description, setDescription] = useState("");
   const [tagInput, setTagInput] = useState("");
   const [tags, setTags] = useState([]);
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
 
-  /* Code written by AI */
-  const preventEnterSubmit = (event) => {
-    // Check if the key pressed was Enter
-    // AND check that the user isn't currently in a textarea
-    if (event.key === "Enter" && event.target.tagName === "INPUT") {
-      event.preventDefault();
-    }
-  };
-  /* End of code written by AI */
-
   const tryAddTag = (event) => {
-    if (event.key == "Enter") {
+    if (event.key === "Enter") {
       if (tagInput.trim()) {
         setTags([...tags, tagInput]);
         setTagInput("");
@@ -27,38 +19,18 @@ function CreatePost() {
     }
   };
 
-  const createNewPost = (event) => {
+  const createNewPost = async (event) => {
     event.preventDefault();
-    console.log("Submitting");
-    const requestOptions = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        title: title,
-        description: text,
-        tags: tags,
-        startDate: startDate,
-        endDate: endDate,
-      }),
-    };
-    fetch("http://localhost:3500/projects", requestOptions)
-      .then(async (response) => {
-        const isJson = response.headers
-          .get("content-type")
-          ?.includes("application/json");
-        const data = isJson && (await response.json());
+    console.log("Submitting...");
 
-        if (!response.ok) {
-          const error = (data && data.message) || response.status;
-          return Promise.reject(error);
-        } else {
-          const msg = (data && data.message) || response.status;
-          console.log("Post created! ", msg);
-        }
-      })
-      .catch((error) => {
-        console.error("Error when fetching: ", error);
-      });
+    const response = await apiService.createNewProject(
+      title,
+      description,
+      tags,
+      startDate,
+      endDate,
+    );
+    console.log(response);
   };
 
   return (
@@ -74,8 +46,8 @@ function CreatePost() {
           placeholder="Project description..."
           cols="80"
           rows="8"
-          value={text}
-          onChange={(event) => setText(event.target.value)}
+          value={description}
+          onChange={(event) => setDescription(event.target.value)}
         />
 
         <input
@@ -106,7 +78,7 @@ function CreatePost() {
         <input type="submit" value="Create Post" />
       </form>
       <h3>{title}</h3>
-      <pre>{text}</pre>
+      <pre>{description}</pre>
       <span>
         {tags.map((tag, i) => (
           <button

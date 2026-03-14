@@ -1,13 +1,13 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Layout from "./Layout";
-import Home from "./Home";
-import CreatePost from "./CreatePost";
-import Login from "./Login";
-import Register from "./Register";
-import PageNotFound from "./PageNotFound";
-import Projects from "./Projects";
-import ProjectDetails from "./ProjectDetails";
+import Layout from "./layout/Layout";
+import Home from "./pages/Home";
+import CreatePost from "./pages/CreatePost";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import PageNotFound from "./pages/PageNotFound";
+import Projects from "./pages/Projects";
+import ProjectDetails from "./pages/ProjectDetails";
 
 function App() {
   return (

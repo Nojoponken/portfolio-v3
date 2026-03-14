@@ -1,16 +1,13 @@
 import { NavLink } from "react-router-dom";
+import Card from "../components/Card";
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-
-const getProjects = async () => {
-  const response = await fetch("http://localhost:3500/projects");
-  return await response.json();
-};
+import apiService from "../services/apiService.js";
 
 function Projects() {
   const { data, isPending } = useQuery({
     queryKey: ["projects"],
-    queryFn: getProjects,
+    queryFn: apiService.getProjects,
   });
 
   const [search, setSearch] = useState("");
@@ -49,17 +46,14 @@ function Projects() {
         type="text"
         onChange={(event) => setSearch(event.target.value)}
       />
-      <section class="results-grid">
+      <section className="results-grid">
         {data.filter(searchFilterFunction).map((item, index) => (
-          <article key={index} class="card">
-            <NavLink to={`/projects/${item._id}`} class="main-link">
-              <h2>{item.title}</h2>
-            </NavLink>
-
-            {item.tags.map((tag, index) => (
-              <button key={index}>{tag}</button>
-            ))}
-          </article>
+          <Card
+            key={index}
+            title={item.title}
+            mainLink={`/projects/${item._id}`}
+            tags={item.tags}
+          />
         ))}
       </section>
     </main>

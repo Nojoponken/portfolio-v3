@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
+import apiService from "../services/apiService.js";
 
 function ProjectDetails() {
   const { projectId } = useParams();
@@ -21,12 +22,7 @@ function ProjectDetails() {
 
   const { data } = useQuery({
     queryKey: [`project-${projectId}`],
-    queryFn: async () => {
-      const response = await fetch(
-        `http://localhost:3500/projects/${projectId}`,
-      );
-      return await response.json();
-    },
+    queryFn: () => apiService.getSingleProject(projectId),
   });
 
   const [dateString, setDateString] = useState("");

@@ -1,8 +1,10 @@
+import portrait from "../assets/portrait-small.webp";
+
 function Home() {
   return (
     <main>
       <h2>About me</h2>
-      <img src="portrait-small.webp" class="portrait" />
+      <img src={portrait} className="portrait" />
       <p>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet, fuga
         facere! Dolores ad odit consequuntur consequatur natus, enim,

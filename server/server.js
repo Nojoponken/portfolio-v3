@@ -13,8 +13,9 @@ const PORT = process.env.PORT || 3500;
 const __dirname = import.meta.dirname;
 
 import rootRoutes from "./routes/root.js";
-import projectRoutes from "./routes/projectRoutes.js";
+import authRoutes from "./routes/authRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
+import projectRoutes from "./routes/projectRoutes.js";
 
 console.log(process.env.NODE_ENV);
 

@@ -1,10 +1,11 @@
 import { NavLink } from "react-router-dom";
+import logo from "../assets/sigil-bold.svg";
 
 function Header() {
   return (
     <header>
       <h1>
-        <img src="sigil-bold.svg" class="logo" /> Noah Rydén
+        <img src={logo} className="logo" /> Noah Rydén
       </h1>
       <nav>
         <NavLink to="/"> Home </NavLink>
