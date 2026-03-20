@@ -1,7 +1,8 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { useQuery } from "@tanstack/react-query";
-import apiService from "../services/apiService.js";
+import { useProject } from "../hooks/useProjects.js";
+
+import ErrorBox from "../components/ErrorBox";
 
 function ProjectDetails() {
   const { projectId } = useParams();
@@ -20,10 +21,7 @@ function ProjectDetails() {
     "December",
   ];
 
-  const { data } = useQuery({
-    queryKey: [`project-${projectId}`],
-    queryFn: () => apiService.getSingleProject(projectId),
-  });
+  const { data, error, isPending } = useProject(projectId);
 
   const [dateString, setDateString] = useState("");
 
@@ -39,25 +37,26 @@ function ProjectDetails() {
   }, [data]);
 
   if (!data) {
-    return (
-      <main>
-        <h3>Loading...</h3>
-      </main>
-    );
+    return <></>;
   }
 
   return (
-    <main>
-      <article>
-        <h2>{data.title}</h2>
-        <pre>{data.description}</pre>
-        {data.tags.map((tag, index) => (
-          <button key={index}>{tag}</button>
-        ))}
-
-        <p>{dateString}</p>
-      </article>
-    </main>
+    <>
+      {isPending ? (
+        <h3>Loading...</h3>
+      ) : error ? (
+        <ErrorBox error={error} />
+      ) : (
+        <article>
+          <h2>{data.title}</h2>
+          <pre>{data.description}</pre>
+          {data.tags.map((tag, index) => (
+            <button key={index}>{tag}</button>
+          ))}
+          <p>{dateString}</p>{" "}
+        </article>
+      )}
+    </>
   );
 }
 

@@ -25,6 +25,23 @@
   --bg-accent: var(bg-accent-1);
 }
 
+.error {
+  background-color: #f883;
+  border: 1px solid #f88;
+  padding: 1rem;
+  margin: 1rem;
+  max-width: fit-content;
+}
+
+.error h2 {
+  font-family: sans;
+  font-weight: bold;
+}
+.error p {
+  font-family: sans;
+  margin: 0;
+}
+
 body {
   margin: 0;
   background-color: var(--bg-1);

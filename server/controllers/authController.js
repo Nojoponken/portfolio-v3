@@ -6,9 +6,9 @@ import asyncHandler from "express-async-handler";
 // @desc Login
 // @route POST /auth
 // @access Public
-const login = asyncHandler(async (req, res) => {
+const login = async (req, res) => {
   const { username, password } = req.body;
-
+  console.log(username, password);
   if (!username || !password) {
     return res.status(400).json({ message: "All fields are required" });
   }
@@ -49,7 +49,7 @@ const login = asyncHandler(async (req, res) => {
   });
 
   res.json({ accessToken });
-});
+};
 
 // @desc Refresh
 // @route GET /auth/refresh
@@ -85,7 +85,7 @@ const refresh = asyncHandler(async (req, res) => {
         process.env.ACCESS_TOKEN_SECRET,
         { expiresIn: "10s" },
       );
-      res.json({ accessToken });
+      res.json({ username: foundUser.username, accessToken });
     }),
   );
 });

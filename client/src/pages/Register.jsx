@@ -26,7 +26,7 @@ function Register() {
   };
 
   return (
-    <main>
+    <>
       <h2>Register page</h2>
       <form onKeyDown={preventEnterSubmit} onSubmit={createNewUser}>
         <input
@@ -49,7 +49,7 @@ function Register() {
         <input type="submit" value="Create new user" disabled={!canSubmit} />
         <NavLink to="/admin/login">Go to login page</NavLink>
       </form>
-    </main>
+    </>
   );
 }
 

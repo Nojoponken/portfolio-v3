@@ -2,7 +2,7 @@ import portrait from "../assets/portrait-small.webp";
 
 function Home() {
   return (
-    <main>
+    <>
       <h2>About me</h2>
       <img src={portrait} className="portrait" />
       <p>
@@ -23,7 +23,7 @@ function Home() {
         voluptatibus tempore atque praesentium facilis quo commodi est. Quae
         ullam tenetur odio?
       </p>
-    </main>
+    </>
   );
 }
 

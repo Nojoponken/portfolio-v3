@@ -1,49 +1,57 @@
-const backend = "http://localhost:3500";
+import { backendPublic } from "./backend";
 
-async function getProjects() {
-  const response = await fetch(`${backend}/projects`);
-  return await response.json();
+async function getAllProjects() {
+  const { data } = await backendPublic.get("/projects");
+  return data;
 }
 
 async function getSingleProject(projectId) {
-  const response = await fetch(`${backend}/projects/${projectId}`);
-  return await response.json();
+  const { data } = await backendPublic.get(`/projects/${projectId}`);
+  return data;
 }
 
-async function createNewProject(title, description, tags, startDate, endDate) {
-  const requestOptions = {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      title,
-      description,
-      tags,
-      startDate,
-      endDate,
-    }),
+async function registerUser({ username, password }) {
+  const headers = {
+    "Content-Type": "application/json",
+  };
+  const body = {
+    username,
+    password,
   };
 
-  const response = await fetch(`${backend}/projects`, requestOptions);
-  return await response.json();
+  const { data } = await backendPublic.post("/users", body, { headers });
+  return data;
 }
 
-async function registerUser(username, password) {
-  const requestOptions = {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      username,
-      password,
-    }),
+async function signInUser({ username, password }) {
+  const headers = {
+    "Content-Type": "application/json",
   };
+  const body = {
+    username,
+    password,
+  };
+  console.log(body);
+  const { data } = await backendPublic.post("/auth", body, {
+    headers,
+    withCredentials: true,
+  });
 
-  const response = await fetch("http://localhost:3500/users", requestOptions);
-  return await response.json();
+  return data;
+}
+
+async function refreshAuth() {
+  const { data } = await backendPublic.get("/auth/refresh", {
+    withCredentials: true,
+  });
+
+  return data;
 }
 
 export default {
-  getProjects,
+  getAllProjects,
   getSingleProject,
-  createNewProject,
   registerUser,
+  signInUser,
+  refreshAuth,
 };
