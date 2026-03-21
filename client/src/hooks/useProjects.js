@@ -1,18 +1,28 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { backendPublic } from "../services/backend";
 import useBackendPrivate from "../hooks/useBackendPrivate";
-import apiService from "../services/apiService.js";
 
-function useProject(projectId) {
+function useProject({ projectId }) {
+  const queryFn = async () => {
+    const { data } = await backendPublic.get(`/projects/${projectId}`);
+    return data;
+  };
+
   return useQuery({
     queryKey: [`project-${projectId}`],
-    queryFn: () => apiService.getSingleProject(projectId),
+    queryFn,
   });
 }
 
 function useAllProjects() {
+  const queryFn = async () => {
+    const { data } = await backendPublic.get("/projects");
+    return data;
+  };
+
   return useQuery({
     queryKey: ["projects"],
-    queryFn: apiService.getAllProjects,
+    queryFn,
   });
 }
 
@@ -23,6 +33,8 @@ function useCreateProject() {
   const mutationFn = async ({
     title,
     description,
+    repo,
+    thumbnail,
     tags,
     startDate,
     endDate,
@@ -33,6 +45,8 @@ function useCreateProject() {
     const body = {
       title,
       description,
+      repo,
+      thumbnail,
       tags,
       startDate,
       endDate,

@@ -41,6 +41,7 @@ function Projects() {
               title={item.title}
               mainLink={`/projects/${item._id}`}
               tags={item.tags}
+              thumbnail={item.thumbnail}
             />
           ))}
         </section>

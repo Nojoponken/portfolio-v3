@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { NavLink } from "react-router";
 import { useLogin } from "../hooks/useLogin";
+import ErrorBox from "../components/ErrorBox";
 
 function Login() {
-  const { data, mutate, isSuccess } = useLogin();
+  const { error, data, mutate, isSuccess } = useLogin();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -18,6 +19,7 @@ function Login() {
   return (
     <>
       <h2>Login page</h2>
+      {error && <ErrorBox error={error} />}
       {isSuccess ? (
         <>
           <p>Successfully signed in! {JSON.stringify(data)}</p>

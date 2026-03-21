@@ -9,6 +9,14 @@ const projectSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  repo: {
+    type: String,
+    required: false,
+  },
+  thumbnail: {
+    type: String,
+    required: true,
+  },
   tags: [
     {
       type: String,

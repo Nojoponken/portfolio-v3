@@ -2,16 +2,19 @@ import { useState } from "react";
 import { preventEnterSubmit } from "../utils/formUtils";
 import { useCreateProject } from "../hooks/useProjects";
 import ErrorBox from "../components/ErrorBox";
+import cloudinaryUpload from "../services/cloudinaryUpload";
 
 function CreateProject() {
+  const { error, data, mutate, isSuccess } = useCreateProject();
+
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [repo, setRepo] = useState("");
+  const [thumbnail, setThumbnail] = useState("temporary");
   const [tagInput, setTagInput] = useState("");
   const [tags, setTags] = useState([]);
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
-
-  const { error, data, mutate, isSuccess } = useCreateProject();
 
   const tryAddTag = (event) => {
     if (event.key === "Enter") {
@@ -22,10 +25,46 @@ function CreateProject() {
     }
   };
 
+  const handleUpload = async (event) => {
+    const file = event.target.files[0];
+
+    setThumbnail(file);
+  };
+
   const createNewPost = async (event) => {
     event.preventDefault();
     console.log("Submitting...");
-    mutate({ title, description, tags, startDate, endDate });
+
+    if (!thumbnail) {
+      console.error("Missing thumbnail image");
+      return;
+    }
+
+    if (!title || !description || !repo || !tags.length) {
+      console.error("Empty fields");
+      return;
+    }
+
+    if (!startDate || !endDate) {
+      console.error("Missing start and/or end date");
+      return;
+    }
+
+    try {
+      const { public_id } = await cloudinaryUpload(thumbnail);
+
+      mutate({
+        title,
+        description,
+        repo,
+        thumbnail: public_id,
+        tags,
+        startDate,
+        endDate,
+      });
+    } catch (error) {
+      console.error("Upload failed: ", error);
+    }
   };
 
   return (
@@ -39,6 +78,7 @@ function CreateProject() {
             placeholder="Title..."
             value={title}
             onChange={(event) => setTitle(event.target.value)}
+            required
           />
 
           <textarea
@@ -47,6 +87,24 @@ function CreateProject() {
             rows="8"
             value={description}
             onChange={(event) => setDescription(event.target.value)}
+            required
+          />
+
+          <label>
+            Thumbnail:{" "}
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleUpload}
+              required
+            />
+          </label>
+
+          <input
+            placeholder="Source repository link..."
+            value={repo}
+            onChange={(event) => setRepo(event.target.value)}
+            required
           />
 
           <input
@@ -55,6 +113,16 @@ function CreateProject() {
             onChange={(event) => setTagInput(event.target.value)}
             onKeyDown={tryAddTag}
           />
+          <span>
+            {tags.map((tag, i) => (
+              <button
+                key={i}
+                onClick={() => setTags(tags.filter((_, j) => i != j))}
+              >
+                {tag}
+              </button>
+            ))}
+          </span>
           <span>
             <label>
               Start date:{" "}

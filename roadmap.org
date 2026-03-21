@@ -2,13 +2,12 @@
 - [X] Migrate fetch to axios
 - [X] Finish auth
 - [X] useMutation for create post
-- [ ] Update projects schema repo and image links
-- [ ] Cloudinary for project thumbnails
+- [X] Update projects schema repo and image links
+- [X] Cloudinary for project thumbnails
 - [ ] Add contacts page
 - [ ] Add wip page for blog tab
 - [ ] Write introduction
 - [ ] Display 3 projects on home
-- [ ] Visual feedback when submitting forms
 - [ ] Add projects
   - [ ] Voxel Engine
   - [ ] P2P Chat
@@ -17,7 +16,9 @@
   - [ ] Social network
 
 * Roadmap v1.1
+- [ ] Visual feedback when submitting forms
 - [ ] Migrate everything to typescript
+- [ ] Refactor CSS
 - [ ] Display most common skills
   - word cloud?
 - [ ] Light/Dark mode switch

@@ -5,7 +5,7 @@ import Footer from "./Footer";
 function Layout() {
   return (
     <div className="lower-footer">
-      <div>
+      <div className="main-content">
         <Header />
         <main>
           <Outlet />
