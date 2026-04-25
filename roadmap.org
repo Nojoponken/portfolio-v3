@@ -4,16 +4,22 @@
 - [X] useMutation for create post
 - [X] Update projects schema repo and image links
 - [X] Cloudinary for project thumbnails
-- [ ] Add contacts page
-- [ ] Add wip page for blog tab
+- [X] Add contacts page
+- [X] Add wip page for blog tab
+- [X] Display 3 projects on home
+- [ ] Edit project page
 - [ ] Write introduction
-- [ ] Display 3 projects on home
 - [ ] Add projects
   - [ ] Voxel Engine
   - [ ] P2P Chat
   - [ ] Hangry Frogs
   - [ ] Enterprise System
   - [ ] Social network
+- [X] Idiomatic css
+- [ ] Mobile friendly css
+- [ ] ENV file
+- [ ] Readme
+- [ ] Host on vercel
 
 * Roadmap v1.1
 - [ ] Visual feedback when submitting forms
@@ -24,6 +30,7 @@
 - [ ] Light/Dark mode switch
 - [ ] Swedish/English language switch
 - [ ] (maybe)Personal interests page
+- [ ] Protected routes
 
 * Roadmap v1.2
 - [ ] Blog posts

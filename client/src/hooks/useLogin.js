@@ -1,4 +1,4 @@
-import useAuth from "../hooks/useAuth";
+import { useAuth } from "../context/AuthContext";
 import { useMutation } from "@tanstack/react-query";
 import { backendPublic } from "../services/backend";
 
@@ -28,11 +28,12 @@ function useLogin() {
     const headers = {
       "Content-Type": "application/json",
     };
+
     const body = {
       username,
       password,
     };
-    console.log(body);
+
     const { data } = await backendPublic.post("/auth", body, {
       headers,
       withCredentials: true,
@@ -49,4 +50,33 @@ function useLogin() {
   });
 }
 
-export { useRegister, useLogin };
+function useLogout() {
+  const { setAuth } = useAuth();
+
+  const mutationFn = async () => {
+    const headers = {
+      "Content-Type": "application/json",
+    };
+
+    const { data } = await backendPublic.post(
+      "/auth/logout",
+      {},
+      {
+        headers,
+        withCredentials: true,
+      },
+    );
+
+    return data;
+  };
+
+  return useMutation({
+    mutationFn,
+    onSuccess: (data) => {
+      console.log(JSON.stringify(data));
+      setAuth({});
+    },
+  });
+}
+
+export { useRegister, useLogin, useLogout };

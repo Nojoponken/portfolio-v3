@@ -1,0 +1,38 @@
+.details-image {
+  width: 50%;
+
+  float: right;
+  margin: 6px 0 2rem 2rem;
+
+  object-fit: cover;
+}
+
+.details-section {
+  min-height: 20rem;
+}
+
+.details-repo {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  margin-block: 0.5rem;
+}
+
+.details-icon {
+  height: 1em;
+  width: 1em;
+  vertical-align: center;
+  mask-image: url(../assets/github-outline.svg);
+  background: #06e;
+}
+
+.details-footer {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem 0;
+  width: 100%;
+}
+
+.detail-date {
+  transform: translate(0, 0.5rem); /* Not good, but it works */
+}

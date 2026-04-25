@@ -70,20 +70,12 @@ const createNewProject = asyncHandler(async (req, res) => {
 // @route PATCH /projects
 // @access Private
 const updateProject = asyncHandler(async (req, res) => {
-  const { id, title, description, tags, startDate, endDate } = req.body;
-  if (
-    !id ||
-    !title ||
-    !description ||
-    !repo ||
-    !thumbnail ||
-    !tags ||
-    !startDate ||
-    !endDate
-  ) {
+  const { id, title, description, repo, thumbnail, tags, startDate, endDate } =
+    req.body;
+  if (!id) {
     return res
       .status(400)
-      .json({ message: "Malformed request, required fields are missing!" });
+      .json({ message: "Malformed request, did not contain project id!" });
   }
 
   const project = await Project.findById(id).exec();
@@ -92,13 +84,13 @@ const updateProject = asyncHandler(async (req, res) => {
     return res.status(404).json({ message: "Project not found" });
   }
 
-  project.title = title;
-  project.description = description;
-  project.repo = repo;
-  project.thumbnail = thumbnail;
-  project.tags = tags;
-  project.startDate = startDate;
-  project.endDate = endDate;
+  if (title) project.title = title;
+  if (description) project.description = description;
+  if (repo) project.repo = repo;
+  if (thumbnail) project.thumbnail = thumbnail;
+  if (tags) project.tags = tags;
+  if (startDate) project.startDate = startDate;
+  if (endDate) project.endDate = endDate;
 
   await project.save();
   res.json({ message: `Project ${title} updated` });

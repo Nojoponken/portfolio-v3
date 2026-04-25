@@ -64,4 +64,44 @@ function useCreateProject() {
   });
 }
 
-export { useProject, useAllProjects, useCreateProject };
+function useEditProject() {
+  const queryClient = useQueryClient();
+  const backendPrivate = useBackendPrivate();
+
+  const mutationFn = async ({
+    id,
+    title,
+    description,
+    repo,
+    thumbnail,
+    tags,
+    startDate,
+    endDate,
+  }) => {
+    const headers = {
+      "Content-Type": "application/json",
+    };
+    const body = {
+      id,
+      title,
+      description,
+      repo,
+      thumbnail,
+      tags,
+      startDate,
+      endDate,
+    };
+
+    const { data } = await backendPrivate.patch("/projects", body, { headers });
+    return data;
+  };
+
+  return useMutation({
+    mutationFn,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["projects"] });
+    },
+  });
+}
+
+export { useProject, useAllProjects, useCreateProject, useEditProject };

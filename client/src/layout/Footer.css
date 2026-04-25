@@ -1,0 +1,15 @@
+footer {
+  padding: 4rem;
+  margin-top: 4rem;
+  background-color: var(--fg-1);
+  color: var(--bg-1);
+
+  display: flex;
+  justify-content: space-between;
+}
+
+footer > a {
+  margin: 1rem 0;
+  color: #525252;
+  text-decoration: none;
+}

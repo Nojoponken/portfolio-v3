@@ -1,0 +1,10 @@
+.highlight-projects {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.highlight > .see-all {
+  font-size: 1.5rem;
+}

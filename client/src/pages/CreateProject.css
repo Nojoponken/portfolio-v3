@@ -1,0 +1,19 @@
+form {
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+}
+form,
+input,
+textarea {
+  padding: 0.5rem;
+  font-size: 1.25rem;
+}
+
+form > * {
+  margin-block: 0.25rem;
+}
+
+form span > * {
+  margin-inline: 0.25rem;
+}

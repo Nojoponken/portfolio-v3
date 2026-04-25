@@ -1,5 +1,5 @@
 import { backendPublic } from "../services/backend";
-import useAuth from "../hooks/useAuth";
+import { useAuth } from "../context/AuthContext";
 
 function useRefreshToken() {
   const { setAuth } = useAuth();

@@ -1,0 +1,43 @@
+header {
+  margin: 2rem auto 4rem auto;
+  max-width: 75rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo {
+  height: 3.5rem;
+  margin-right: 0.5rem;
+  vertical-align: bottom;
+  filter: invert(15%);
+}
+
+h1 {
+  margin: 0;
+  font-size: 3rem;
+  line-height: 3rem;
+  font-family: Libre Baskerville;
+  font-style: italic;
+}
+
+nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+nav a {
+  font-size: 1.5rem;
+  line-height: 3.5rem;
+  font-family: Staatliches;
+  text-decoration: none;
+  text-align: center;
+  color: var(--fg-1);
+
+  padding-inline: 2rem;
+  border-right: 1px solid var(--fg-1);
+}
+
+nav a:hover {
+  color: var(--fg-2);
+  text-decoration: underline;
+}

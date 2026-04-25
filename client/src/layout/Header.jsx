@@ -1,3 +1,4 @@
+import "./Header.css";
 import { NavLink } from "react-router-dom";
 import logo from "../assets/sigil-bold.svg";
 

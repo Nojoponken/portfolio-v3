@@ -1,3 +1,4 @@
+import "./Projects.css";
 import Card from "../components/Card";
 import ErrorBox from "../components/ErrorBox";
 import { useState } from "react";
@@ -38,6 +39,7 @@ function Projects() {
           {data.filter(searchFilterFunction).map((item, index) => (
             <Card
               key={index}
+              color={item._id}
               title={item.title}
               mainLink={`/projects/${item._id}`}
               tags={item.tags}

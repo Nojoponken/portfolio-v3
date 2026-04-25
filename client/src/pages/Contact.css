@@ -1,0 +1,25 @@
+.contact-list {
+  margin: 0 auto;
+  padding: 2rem 2rem;
+  max-width: max-content;
+  list-style-type: none;
+
+  background: #99bbff;
+
+  font-size: 1.25rem;
+  /*box-shadow: 1rem 1rem var(--fg-1);
+  border: 1px solid var(--fg-1);*/
+}
+
+.contact-item {
+  margin: 1rem 1rem 1rem 0rem;
+}
+
+.contact-item a {
+  color: var(--fg-1);
+}
+
+.contact-icon {
+  margin: 0 1rem 0 0;
+  vertical-align: center;
+}

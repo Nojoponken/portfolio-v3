@@ -1,48 +1,22 @@
+import "./ProjectDetails.css";
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { useProject } from "../hooks/useProjects.js";
+import { useNavigate } from "react-router";
+import { useAuth } from "../context/AuthContext";
+import { useProject } from "../hooks/useProjects";
 import { AdvancedImage } from "@cloudinary/react";
 import useCld from "../hooks/useCld";
 
-import gitIcon from "../assets/Git-Icon-Black.svg";
-
 import ErrorBox from "../components/ErrorBox";
-
-const months = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
+import DateDisplay from "../components/DateDisplay";
 
 function ProjectDetails() {
+  const { auth } = useAuth();
   const { projectId } = useParams();
+  const navigate = useNavigate();
 
   const { data, error, isPending } = useProject({ projectId });
 
-  const [dateString, setDateString] = useState("");
   const { cld } = useCld();
-  useEffect(() => {
-    if (data) {
-      const startDate = new Date(data.startDate);
-      const endDate = new Date(data.endDate);
-
-      const startMonth = months[startDate.getMonth()];
-      const endMonth = months[endDate.getMonth()];
-      const startYear = startDate.getFullYear();
-      const endYear = endDate.getFullYear();
-
-      setDateString(`${startMonth} ${startYear} to ${endMonth} ${endYear}`);
-    }
-  }, [data]);
 
   if (!data) {
     return <>{JSON.stringify(error)}</>;
@@ -57,10 +31,10 @@ function ProjectDetails() {
       ) : error ? (
         <ErrorBox error={error} />
       ) : (
-        <article className="detail">
-          <AdvancedImage cldImg={myImage} className="thumbnail-detail" />
-          <h2>{data.title}</h2>
-          <section>
+        <article className="details-article">
+          <AdvancedImage cldImg={myImage} className="details-image" />
+          <h2 className="details-title">{data.title}</h2>
+          <section className="details-section">
             {data.description
               .split("\n")
               .filter((p) => p) // Filter empty strings
@@ -68,22 +42,32 @@ function ProjectDetails() {
                 <p key={index}>{paragraph}</p>
               ))}
           </section>
-          <div className="repo">
+
+          <div className="details-repo">
             <a href={data.repo}>
-              <img src={gitIcon} className="icon" /> Git Repository
+              <img className="details-icon" /> Git Repository
             </a>
           </div>
 
-          <span className="detail-footer">
-            <span>
+          <span className="details-footer">
+            <span className="details-tags">
               {data.tags.map((tag, index) => (
                 <button key={index} className="tag-button">
                   {tag}
                 </button>
               ))}
             </span>
-            <b>{dateString}</b>
+            <DateDisplay
+              startDateStr={data.startDate}
+              endDateStr={data.endDate}
+            />
           </span>
+
+          {auth.username && (
+            <button onClick={() => navigate(`/admin/edit/${projectId}`)}>
+              Edit project
+            </button>
+          )}
         </article>
       )}
     </>
