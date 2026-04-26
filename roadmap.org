@@ -7,7 +7,7 @@
 - [X] Add contacts page
 - [X] Add wip page for blog tab
 - [X] Display 3 projects on home
-- [ ] Edit project page
+- [X] Edit project page
 - [ ] Write introduction
 - [ ] Add projects
   - [ ] Voxel Engine
