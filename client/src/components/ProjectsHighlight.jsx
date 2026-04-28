@@ -1,12 +1,21 @@
 import "./ProjectsHighlight.css";
 
 import Card from "../components/Card";
+import ErrorBox from "../components/ErrorBox";
 import { NavLink } from "react-router-dom";
 
 import { useAllProjects } from "../hooks/useProjects.js";
 
 function ProjectsHighlight() {
-  const { data } = useAllProjects();
+  const { error, data, isPending } = useAllProjects();
+
+  if (isPending) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <ErrorBox error={error} />;
+  }
 
   return (
     <div className="highlight">
