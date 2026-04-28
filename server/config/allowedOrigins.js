@@ -1,9 +1,7 @@
-const allowedOrigins = [
-  "*",
-  "http://localhost:3000",
-  "http://localhost:5173",
-  "https://www.noahryden.se",
-  "https://noahryden.se",
-];
+import "dotenv/config.js";
+
+const originsString = process.env.ALLOWED_ORIGINS || "";
+
+const allowedOrigins = [originsString.split(",").map((item) => item.trim())];
 
 export default allowedOrigins;
