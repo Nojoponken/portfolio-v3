@@ -19,7 +19,10 @@ import projectRoutes from "./routes/projectRoutes.js";
 
 console.log(process.env.NODE_ENV);
 
-connectDB();
+app.use(async (req, res, next) => {
+  await connectDB();
+  next();
+});
 
 app.use(logger);
 
@@ -50,15 +53,9 @@ app.all("*splat", (req, res) => {
 
 app.use(errorHandler);
 
-mongoose.connection.once("open", () => {
-  console.log("Connected to MongoDB");
-  app.listen(PORT, () => console.log(`Server running on port: ${PORT}`));
-});
+// mongoose.connection.once("open", () => {
+//   console.log("Connected to MongoDB");
+//   app.listen(PORT, () => console.log(`Server running on port: ${PORT}`));
+// });
 
-mongoose.connection.on("error", (err) => {
-  console.log(err);
-  logEvents(
-    `${err.no}: ${err.code}\t${err.syscall}\t${err.hostname}`,
-    "mongoErrlog.log",
-  );
-});
+export default app;
