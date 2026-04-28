@@ -11,7 +11,7 @@ function ProjectsHighlight() {
   return (
     <div className="highlight">
       <span className="highlight-projects">
-        {data && (
+        {data.length && (
           <>
             {data.slice(0, 3).map((item, index) => (
               <Card
