@@ -73,7 +73,7 @@ function Home() {
       <hr />
       <section>
         <h2>Projects</h2>
-        <ProjectsHighlight />
+        {/*<ProjectsHighlight />*/}
       </section>
     </>
   );
