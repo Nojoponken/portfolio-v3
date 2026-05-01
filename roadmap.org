@@ -17,9 +17,9 @@
   - [ ] Social network
 - [X] Idiomatic css
 - [ ] Mobile friendly css
-- [ ] ENV file
+- [X] ENV file
 - [ ] Readme
-- [ ] Host on vercel
+- [X] Host on vercel
 
 * Roadmap v1.1
 - [ ] Visual feedback when submitting forms

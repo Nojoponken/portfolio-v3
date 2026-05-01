@@ -1,6 +1,7 @@
 import "./ProjectDetails.css";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router";
+import { RotatingLines } from "react-loader-spinner";
 import { useAuth } from "../context/AuthContext";
 import { useProject } from "../hooks/useProjects";
 import { AdvancedImage } from "@cloudinary/react";
@@ -18,20 +19,20 @@ function ProjectDetails() {
 
   const { cld } = useCld();
 
-  if (!data) {
+  if (error) {
     return <>{JSON.stringify(error)}</>;
   }
 
   const myImage = cld.image(data.thumbnail);
 
   return (
-    <>
+    <article className="details-article">
       {isPending ? (
-        <h3>Loading...</h3>
+        <RotatingLines color="#0008" />
       ) : error ? (
         <ErrorBox error={error} />
       ) : (
-        <article className="details-article">
+        <>
           <AdvancedImage cldImg={myImage} className="details-image" />
           <h2 className="details-title">{data.title}</h2>
           <section className="details-section">
@@ -68,9 +69,9 @@ function ProjectDetails() {
               Edit project
             </button>
           )}
-        </article>
+        </>
       )}
-    </>
+    </article>
   );
 }
 

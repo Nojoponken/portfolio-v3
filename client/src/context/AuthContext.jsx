@@ -31,7 +31,7 @@ function AuthProvider({ children }) {
     <AuthContext.Provider value={{ auth, setAuth }}>
       {/* The data we pass to the value prop above is available to */}
       {/* all the children of the AuthProvider component. */}
-      {isLoading ? <p>loading...</p> : children}
+      {children}
     </AuthContext.Provider>
   );
 }
