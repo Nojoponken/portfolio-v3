@@ -18,34 +18,32 @@ function ProjectsHighlight() {
   }
 
   try {
-    return <p>{JSON.parse(data)}</p>;
+    return (
+      <div className="highlight">
+        <span className="highlight-projects">
+          {data.length && (
+            <>
+              {data.slice(0, 3).map((item, index) => (
+                <Card
+                  key={index}
+                  color={item._id}
+                  title={item.title}
+                  mainLink={`/projects/${item._id}`}
+                  tags={item.tags}
+                  thumbnail={item.thumbnail}
+                />
+              ))}
+            </>
+          )}
+        </span>
+        <NavLink to="/projects" className="see-all tag-button">
+          See all projects &#x1F862;
+        </NavLink>
+      </div>
+    );
   } catch (e) {
-    return <ErrorBox error={{ status: 500, message: "Server error" }} />;
+    return <ErrorBox error={e} />;
   }
-
-  return (
-    <div className="highlight">
-      <span className="highlight-projects">
-        {data.length && (
-          <>
-            {data.slice(0, 3).map((item, index) => (
-              <Card
-                key={index}
-                color={item._id}
-                title={item.title}
-                mainLink={`/projects/${item._id}`}
-                tags={item.tags}
-                thumbnail={item.thumbnail}
-              />
-            ))}
-          </>
-        )}
-      </span>
-      <NavLink to="/projects" className="see-all tag-button">
-        See all projects &#x1F862;
-      </NavLink>
-    </div>
-  );
 }
 
 export default ProjectsHighlight;
