@@ -1,4 +1,5 @@
 import "./ProjectDetails.css";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router";
 import { RotatingLines } from "react-loader-spinner";
@@ -11,6 +12,7 @@ import ErrorBox from "../components/ErrorBox";
 import DateDisplay from "../components/DateDisplay";
 
 function ProjectDetails() {
+  const [img, setImg] = useState();
   const { auth } = useAuth();
   const { projectId } = useParams();
   const navigate = useNavigate();
@@ -19,11 +21,11 @@ function ProjectDetails() {
 
   const { cld } = useCld();
 
-  if (error) {
-    return <>{JSON.stringify(error)}</>;
-  }
-
-  const myImage = cld.image(data.thumbnail);
+  useEffect(() => {
+    if (data) {
+      setImg(cld.image(data.thumbnail));
+    }
+  }, [data]);
 
   return (
     <article className="details-article">
@@ -33,7 +35,7 @@ function ProjectDetails() {
         <ErrorBox error={error} />
       ) : (
         <>
-          <AdvancedImage cldImg={myImage} className="details-image" />
+          <AdvancedImage cldImg={img} className="details-image" />
           <h2 className="details-title">{data.title}</h2>
           <section className="details-section">
             {data.description
