@@ -17,6 +17,12 @@ function ProjectsHighlight() {
     return <ErrorBox error={error} />;
   }
 
+  try {
+    return <p>{JSON.parse(data)}</p>;
+  } catch (e) {
+    return <ErrorBox error={{ status: 500, message: "Server error" }} />;
+  }
+
   return (
     <div className="highlight">
       <span className="highlight-projects">

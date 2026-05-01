@@ -23,33 +23,46 @@ function Projects() {
     return TITLEMATCH || DESCMATCH || TAGMATCH;
   };
 
-  return (
-    <>
-      <input
-        placeholder="Search..."
-        type="text"
-        onChange={(event) => setSearch(event.target.value)}
-      />
-      {isPending ? (
-        <h3>Loading...</h3>
-      ) : error ? (
-        <ErrorBox error={error} />
-      ) : (
-        <section className="results-grid">
-          {data.filter(searchFilterFunction).map((item, index) => (
-            <Card
-              key={index}
-              color={item._id}
-              title={item.title}
-              mainLink={`/projects/${item._id}`}
-              tags={item.tags}
-              thumbnail={item.thumbnail}
-            />
-          ))}
-        </section>
-      )}
-    </>
-  );
+  try {
+    return (
+      <>
+        <input
+          placeholder="Search..."
+          type="text"
+          onChange={(event) => setSearch(event.target.value)}
+        />
+        {isPending ? (
+          <h3>Loading...</h3>
+        ) : error ? (
+          <ErrorBox error={error} />
+        ) : (
+          <section className="results-grid">
+            {data.filter(searchFilterFunction).map((item, index) => (
+              <Card
+                key={index}
+                color={item._id}
+                title={item.title}
+                mainLink={`/projects/${item._id}`}
+                tags={item.tags}
+                thumbnail={item.thumbnail}
+              />
+            ))}
+          </section>
+        )}
+      </>
+    );
+  } catch (e) {
+    return (
+      <>
+        <input
+          placeholder="Search..."
+          type="text"
+          onChange={(event) => setSearch(event.target.value)}
+        />
+        <ErrorBox error={e} />
+      </>
+    );
+  }
 }
 
 export default Projects;

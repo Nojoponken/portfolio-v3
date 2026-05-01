@@ -1,13 +1,17 @@
 .home-about {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+}
+
+.home-intro {
+  font-size: 1.25rem;
+  font-family: Libre Baskerville;
 }
 
 .home-portrait {
-  margin: 6px 0 0 auto;
+  margin: 6px 3rem 3rem 6rem;
   width: 30rem;
   height: 30rem;
   object-fit: cover;
+  float: right;
 }
 
 .home-education {
