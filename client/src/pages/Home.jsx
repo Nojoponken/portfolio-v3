@@ -1,7 +1,8 @@
 import "./Home.css";
 
 import portrait from "../assets/portrait-small.webp";
-import valla from "../assets/Campus-Valla-LiU.jpg";
+import valla from "../assets/campus-valla-liu.webp";
+import logo from "../assets/liu-logo.webp";
 
 import ProjectsHighlight from "../components/ProjectsHighlight";
 
@@ -56,7 +57,10 @@ function Home() {
       </section>
       <hr />
       <section className="home-education">
-        <img src={valla} className="home-campus shadowed" />
+        <div>
+          <img src={logo} className="home-liu-logo" />
+          <img src={valla} className="home-campus shadowed" />
+        </div>
         <div>
           <h2>My education</h2>
           <p>
@@ -71,7 +75,7 @@ function Home() {
             agent technology in areas like game programming and robotics.
           </p>
           <p>
-            The philosophy of the programme is learning by doing, drawing a
+            The philosophy of the program is learning by doing, drawing a
             parallel between programming and traditional craftsmanship. You
             develop your skills by writing a lot of code across different kinds
             of projects, and by regularly reflecting on what good code actually
@@ -86,7 +90,7 @@ function Home() {
             independently and in project groups.
           </p>
           <p>
-            By the end of the programme a personal portfolio of creative
+            By the end of the program a personal portfolio of creative
             programming projects has been built up.
           </p>
         </div>

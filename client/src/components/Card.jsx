@@ -7,10 +7,13 @@ function Card({ color, title, mainLink, tags, thumbnail }) {
   const { cld } = useCld();
   const myImage = cld.image(thumbnail);
 
+  const colorHsh =
+    (color.charCodeAt(color.length - 1) * color.charCodeAt(color.length - 2) -
+      color.charCodeAt(color.length - 3)) %
+    6;
+
   return (
-    <article
-      className={`shadowed card card-color-${color.charCodeAt(color.length - 2) % 6}`}
-    >
+    <article className={`shadowed card card-color-${colorHsh}`}>
       <AdvancedImage cldImg={myImage} className="card-thumbnail" />
       <NavLink to={mainLink} className="card-mainlink">
         <h2>{title}</h2>

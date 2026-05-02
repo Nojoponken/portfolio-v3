@@ -26,6 +26,10 @@
   object-fit: cover;
 }
 
+.home-liu-logo {
+  width: 30rem;
+}
+
 hr {
   margin: 2rem 0;
 }

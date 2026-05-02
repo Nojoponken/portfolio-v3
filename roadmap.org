@@ -8,31 +8,31 @@
 - [X] Add wip page for blog tab
 - [X] Display 3 projects on home
 - [X] Edit project page
-- [ ] Write introduction
-- [ ] Add projects
+- [X] Write introduction
+- [-] Add projects
   - [ ] Voxel Engine
-  - [ ] P2P Chat
-  - [ ] Hangry Frogs
+  - [X] P2P Chat
+  - [X] Hangry Frogs
   - [ ] Enterprise System
-  - [ ] Social network
+  - [X] Social network
 - [X] Idiomatic css
-- [ ] Mobile friendly css
 - [X] ENV file
-- [ ] Readme
 - [X] Host on vercel
+- [ ] Mobile friendly css
+- [ ] Better local dev
+- [ ] Readme
 
 * Roadmap v1.1
-- [ ] Visual feedback when submitting forms
+- [X] Visual feedback when submitting forms
 - [ ] Migrate everything to typescript
-- [ ] Refactor CSS
-- [ ] Display most common skills
-  - word cloud?
 - [ ] Light/Dark mode switch
 - [ ] Swedish/English language switch
 - [ ] (maybe)Personal interests page
 - [ ] Protected routes
 
 * Roadmap v1.2
+- [ ] Display most common skills
+  - word cloud?
 - [ ] Blog posts
-  - store as markdown?
+  - store as markdown? store like a tumblr post?
   - multiple images
