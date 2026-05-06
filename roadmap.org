@@ -10,7 +10,7 @@
 - [X] Edit project page
 - [X] Write introduction
 - [-] Add projects
-  - [ ] Voxel Engine
+  - [X] Voxel Engine
   - [X] P2P Chat
   - [X] Hangry Frogs
   - [ ] Enterprise System

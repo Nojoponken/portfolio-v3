@@ -22,7 +22,7 @@ h1 {
 
 nav {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
 nav a {
