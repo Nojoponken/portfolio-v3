@@ -43,8 +43,8 @@ const login = async (req, res) => {
 
   res.cookie("jwt", refreshToken, {
     httpOnly: true,
-    secure: true,
-    sameSite: "None",
+    secure: process.env.NODE_ENV === "production",
+    sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
     maxAge: 24 * 60 * 60 * 1000,
   });
 
@@ -100,7 +100,11 @@ const logout = asyncHandler(async (req, res) => {
     return res.sendStatus(204);
   }
 
-  res.clearCookie("jwt", { httpOnly: true, sameSite: "None", secure: true });
+  res.clearCookie("jwt", {
+    httpOnly: true,
+    sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
+    secure: process.env.NODE_ENV === "production",
+  });
   res.json({ message: "Cookie cleared" });
 });
 
