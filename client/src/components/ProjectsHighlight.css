@@ -8,3 +8,32 @@
 .highlight > .see-all {
     font-size: 1.5rem;
 }
+
+/* Horizontal scroll on mobile */
+@media (max-width: 900px) {
+    .highlight-scroll-wrapper {
+        position: relative;
+        margin-bottom: 1rem;
+    }
+
+    .highlight-scroll {
+        overflow-x: auto;
+        scrollbar-width: none;
+    }
+
+    .highlight-scroll::-webkit-scrollbar {
+        display: none;
+    }
+
+    .highlight-projects {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 0;
+        padding: 0 1rem;
+    }
+
+    .highlight-projects .card {
+        flex: 0 0 80%;
+        max-width: 20rem;
+    }
+}
