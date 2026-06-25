@@ -23,7 +23,9 @@ function DateDisplay({ startDateStr, endDateStr }) {
   const endMonth = months[endDate.getMonth()];
   const endYear = endDate.getFullYear();
 
-  return <b>{`${startMonth} ${startYear} to ${endMonth} ${endYear}`}</b>;
+  return (
+    <strong>{`${startMonth} ${startYear} to ${endMonth} ${endYear}`}</strong>
+  );
 }
 
 export default DateDisplay;

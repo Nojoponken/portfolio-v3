@@ -1,43 +1,137 @@
 header {
-  margin: 2rem auto 4rem auto;
-  max-width: 75rem;
-  display: flex;
-  justify-content: space-between;
+    margin: 2rem auto 4rem auto;
+    max-width: 75rem;
+    display: flex;
+    justify-content: space-between;
 }
 
 .logo {
-  height: 3.5rem;
-  margin-right: 0.5rem;
-  vertical-align: bottom;
-  filter: invert(15%);
+    height: 3.5rem;
+    margin-right: 0.5rem;
+    vertical-align: bottom;
+    filter: invert(15%);
 }
 
 h1 {
-  margin: 0;
-  font-size: 3rem;
-  line-height: 3rem;
-  font-family: Libre Baskerville;
-  font-style: italic;
+    margin: 0;
+    font-size: 3rem;
+    line-height: 3rem;
+    font-family: Libre Baskerville;
+    font-style: italic;
 }
 
 nav {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
 nav a {
-  font-size: 1.5rem;
-  line-height: 3.5rem;
-  font-family: Staatliches;
-  text-decoration: none;
-  text-align: center;
-  color: var(--fg-1);
+    font-size: 1.5rem;
+    line-height: 3.5rem;
+    font-family: Staatliches;
+    text-decoration: none;
+    text-align: center;
+    color: var(--fg-1);
 
-  padding-inline: 2rem;
-  border-right: 1px solid var(--fg-1);
+    padding-inline: 2rem;
+    border-right: 1px solid var(--fg-1);
+}
+
+nav a:last-child {
+    border-right: none;
 }
 
 nav a:hover {
-  color: var(--fg-2);
-  text-decoration: underline;
+    color: var(--fg-2);
+    text-decoration: underline;
+}
+
+/* Hamburger button — hidden on desktop */
+.nav-toggle {
+    display: none;
+}
+
+/* Mobile navigation */
+@media (max-width: 768px) {
+    header {
+        position: relative;
+        flex-direction: column;
+        margin: 1rem auto 2rem auto;
+        gap: 1rem;
+    }
+
+    h1 {
+        font-size: clamp(2rem, 8vw, 3rem);
+        text-align: center;
+    }
+
+    .logo {
+        height: clamp(2.5rem, 6vw, 3.5rem);
+    }
+
+    .nav-toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 44px;
+        height: 44px;
+        padding: 8px;
+
+        background: none;
+        border: none;
+        cursor: pointer;
+        z-index: 10;
+    }
+
+    .nav-toggle-bar {
+        display: block;
+        width: 24px;
+        height: 3px;
+        background: var(--fg-1);
+        border-radius: 2px;
+        transition:
+            transform 0.2s ease,
+            opacity 0.2s ease;
+    }
+
+    /* Animate hamburger to X when open */
+    .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    nav {
+        display: none;
+        grid-template-columns: 1fr;
+        width: 100%;
+    }
+
+    nav.open {
+        display: grid;
+    }
+
+    nav a {
+        border-right: none;
+        border-bottom: 1px solid var(--fg-1);
+        padding: 0.75rem 0;
+        font-size: 1.25rem;
+        line-height: 1.5;
+    }
+
+    nav a:last-child {
+        border-bottom: none;
+    }
 }

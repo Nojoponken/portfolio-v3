@@ -14,7 +14,7 @@ function Card({ color, title, mainLink, tags, thumbnail }) {
 
   return (
     <article className={`shadowed card card-color-${colorHsh}`}>
-      <AdvancedImage cldImg={myImage} className="card-thumbnail" />
+      <AdvancedImage cldImg={myImage} className="card-thumbnail" alt={title} />
       <NavLink to={mainLink} className="card-mainlink">
         <h2>{title}</h2>
       </NavLink>

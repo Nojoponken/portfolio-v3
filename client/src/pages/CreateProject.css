@@ -1,19 +1,25 @@
 form {
-  margin-inline: auto;
-  display: flex;
-  flex-direction: column;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    width: min(100%, 40rem);
 }
 form,
 input,
 textarea {
-  padding: 0.5rem;
-  font-size: 1.25rem;
+    padding: 0.5rem;
+    font-size: 1.25rem;
 }
 
 form > * {
-  margin-block: 0.25rem;
+    margin-block: 0.25rem;
 }
 
 form span > * {
-  margin-inline: 0.25rem;
+    margin-inline: 0.25rem;
+}
+
+textarea {
+    width: 100%;
+    max-width: 100%;
 }

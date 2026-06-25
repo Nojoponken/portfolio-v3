@@ -35,7 +35,11 @@ function ProjectDetails() {
         <ErrorBox error={error} />
       ) : (
         <>
-          <AdvancedImage cldImg={img} className="details-image" />
+          <AdvancedImage
+            cldImg={img}
+            className="details-image"
+            alt={data.title}
+          />
           <h2 className="details-title">{data.title}</h2>
           <section className="details-section">
             {data.description
@@ -48,7 +52,8 @@ function ProjectDetails() {
 
           <div className="details-repo">
             <a href={data.repo}>
-              <img className="details-icon" /> Git Repository
+              <img className="details-icon" alt="" role="presentation" /> Git
+              Repository
             </a>
           </div>
 

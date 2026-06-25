@@ -1,16 +1,17 @@
 .blog-section {
-  margin: 0 auto;
-  padding: 2rem;
-  width: fit-content;
+    margin: 0 auto;
+    padding: 2rem;
+    width: fit-content;
+    max-width: 100%;
 
-  background: #ffbb99;
+    background: #ffbb99;
 }
 
 .blog-title {
-  margin: 0 auto;
-  width: fit-content;
+    margin: 0 auto;
+    width: fit-content;
 }
 
 .blog-image {
-  width: 16rem;
+    width: min(100%, 16rem);
 }

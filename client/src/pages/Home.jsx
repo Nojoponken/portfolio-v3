@@ -10,7 +10,11 @@ function Home() {
   return (
     <>
       <section className="home-about">
-        <img src={portrait} className="home-portrait shadowed" />
+        <img
+          src={portrait}
+          className="home-portrait shadowed"
+          alt="Portrait of Noah Rydén"
+        />
         <h2>About me</h2>
         <h4 className="home-intro">
           Hi, I'm a young programmer from Stockholm, Sweden. Coding has been my
@@ -58,8 +62,16 @@ function Home() {
       <hr />
       <section className="home-education">
         <div>
-          <img src={logo} className="home-liu-logo" />
-          <img src={valla} className="home-campus shadowed" />
+          <img
+            src={logo}
+            className="home-liu-logo"
+            alt="Linköping University logo"
+          />
+          <img
+            src={valla}
+            className="home-campus shadowed"
+            alt="Campus Valla, Linköping University"
+          />
         </div>
         <div>
           <h2>My education</h2>

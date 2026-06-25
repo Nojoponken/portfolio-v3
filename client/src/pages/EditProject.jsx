@@ -110,7 +110,6 @@ function EditProject() {
 
           <textarea
             placeholder="Project description..."
-            cols="80"
             rows="8"
             value={description}
             onChange={(event) => setDescription(event.target.value)}
