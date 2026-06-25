@@ -7,7 +7,7 @@ header {
 
 .logo {
     height: 3.5rem;
-    margin-right: 0.5rem;
+    margin-right: 1.5rem;
     vertical-align: bottom;
     filter: invert(15%);
 }
@@ -52,7 +52,7 @@ nav a:hover {
 }
 
 /* Mobile navigation */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     header {
         position: relative;
         flex-direction: column;
@@ -61,12 +61,13 @@ nav a:hover {
     }
 
     h1 {
-        font-size: clamp(2rem, 8vw, 3rem);
-        text-align: center;
+        font-size: 2rem;
+        line-height: 2rem;
     }
 
     .logo {
-        height: clamp(2.5rem, 6vw, 3.5rem);
+        height: 2.5rem;
+        margin-right: 1rem;
     }
 
     .nav-toggle {

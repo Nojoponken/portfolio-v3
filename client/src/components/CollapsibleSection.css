@@ -1,0 +1,51 @@
+/* Collapsible sections — hidden on desktop */
+.collapsible-toggle {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .collapsible-body {
+    position: relative;
+    max-height: 15rem;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+  }
+
+  .collapsible-body.collapsible-expanded {
+    max-height: 100rem;
+  }
+
+  .collapsible-fade {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4rem;
+    background: linear-gradient(to bottom, transparent, var(--bg-1));
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+  }
+
+  .collapsible-body.collapsible-expanded .collapsible-fade {
+    opacity: 0;
+  }
+
+  .collapsible-toggle {
+    display: block;
+    margin-top: 0.5rem;
+    padding: 0.25rem 0;
+
+    font-family: Staatliches;
+    font-size: 1.25rem;
+    color: var(--fg-2);
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 0.25rem;
+  }
+
+  .collapsible-toggle:hover {
+    color: var(--fg-1);
+  }
+}

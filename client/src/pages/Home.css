@@ -4,6 +4,8 @@
 .home-intro {
     font-size: 1.25rem;
     font-family: Libre Baskerville;
+    text-align: center;
+    padding-block: 2rem;
 }
 
 .home-portrait {
@@ -34,18 +36,18 @@ hr {
     margin: 2rem 0;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
+    .home-intro {
+        padding-block: 0;
+    }
+
     .home-portrait {
         float: none;
         display: block;
         margin: 0 auto 2rem auto;
-        width: min(100%, 30rem);
+        width: min(85%, 30rem);
         height: auto;
         aspect-ratio: 1;
-    }
-
-    .home-intro {
-        text-align: center;
     }
 
     .home-education {

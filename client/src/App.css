@@ -2,9 +2,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Staatliches&display=swap");
 
 :root {
-    --bp-sm: 640px;
-    --bp-md: 768px;
-    --bp-lg: 1024px;
+    --bp-sm: 600px;
+    --bp-md: 900px;
+    --bp-lg: 1200px;
 
     --fg-1: #262626;
     --fg-2: #818181;
